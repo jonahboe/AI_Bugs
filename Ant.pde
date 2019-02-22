@@ -18,7 +18,6 @@ class Ant {
       life[i] = random(TWO_PI);
     }
     age = 0;
-    dead = false;
   }
   
   void update() {
