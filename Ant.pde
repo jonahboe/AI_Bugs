@@ -7,7 +7,6 @@ class Ant {
   int posY;
   float life[];
   int age;
-  boolean dead;
   
   Ant() {
     sprite = new Animate("ant_sprite", 4);
@@ -39,7 +38,7 @@ class Ant {
   }
   
   boolean isDead() {
-    return (age >= life.length) || dead;
+    return age >= life.length;
   }
   
 }
