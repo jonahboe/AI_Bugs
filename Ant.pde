@@ -11,8 +11,8 @@ class Ant {
   
   Ant() {
     sprite = new Animate("ant_sprite", 4);
-    posX = width/2;
-    posY = height/2;
+    posX = 10;
+    posY = 10;
     
     life = new float[200];
     for(int i = 0; i < life.length; i++) {
@@ -28,9 +28,9 @@ class Ant {
     posX += x;
     posY += y;
     
-    if(posX < 0 || posX > width ||
-       posY < 0 || posY > width)
-        dead = true;
+    // create some wrap around
+    posX = (((posX+25 % width) + width) % width) - 25;
+    posY = (((posY+25 % height) + height) % height) - 25;
   }
   
   void draw() {

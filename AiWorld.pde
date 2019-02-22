@@ -2,10 +2,12 @@ class AiWorld {
   
   ArrayList<Ant> ants;
   boolean dead;
+  Candy candy;
   
   AiWorld() {
     ants = new ArrayList<Ant>();
     dead = false;
+    candy = new Candy(width/2, height/2);
   }
   
   void update() {
@@ -22,6 +24,7 @@ class AiWorld {
       if (!a.isDead())
         a.draw();
     }
+    candy.draw();
   }
   
   void addAnt() {
