@@ -5,7 +5,7 @@ class Ant {
   Animate sprite;
   int posX;
   int posY;
-  float life[];
+  float dna[];
   int age;
   
   Ant() {
@@ -13,16 +13,16 @@ class Ant {
     posX = 10;
     posY = 10;
     
-    life = new float[200];
-    for(int i = 0; i < life.length; i++) {
-      life[i] = random(TWO_PI);
+    dna = new float[100];
+    for(int i = 0; i < dna.length; i++) {
+      dna[i] = random(TWO_PI);
     }
     age = 0;
   }
   
   void update() {
-    int x = (int)(sin(life[age]) * res);
-    int y = (int)(-cos(life[age]) * res);
+    int x = (int)(sin(dna[age]) * res);
+    int y = (int)(-cos(dna[age]) * res);
     posX += x;
     posY += y;
     
@@ -32,12 +32,16 @@ class Ant {
   }
   
   void draw() {
-    sprite.draw(posX,posY,life[age]);
+    sprite.draw(posX,posY,dna[age]);
     age++;
   }
   
   boolean isDead() {
-    return age >= life.length;
+    return age >= dna.length;
+  }
+  
+  int getFitness() {
+    return 0;
   }
   
 }
