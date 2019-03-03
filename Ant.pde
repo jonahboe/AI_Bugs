@@ -11,7 +11,7 @@ class Ant {
   int posX;
   int posY;
   // About our ant and its lifespan
-  float dna[];
+  FloatList dna = new FloatList();
   int age;
   
   /*****************************************
@@ -24,9 +24,8 @@ class Ant {
     posX = 10;
     posY = 10;
     // Fill our DNA with random directions of travle
-    dna = new float[100];
-    for(int i = 0; i < dna.length; i++) {
-      dna[i] = random(TWO_PI);
+    for(int i = 0; i < 100; i++) {
+      dna.append(random(TWO_PI));
     }
     // Set our starting age
     age = 0;
@@ -38,8 +37,8 @@ class Ant {
   void update() {
     // Set our new direction (Our image doesnt point towards 0
     //   so this is kind of funky)
-    int x = (int)(sin(dna[age]) * mag);
-    int y = (int)(-cos(dna[age]) * mag);
+    int x = (int)(sin(dna.get(age)) * mag);
+    int y = (int)(-cos(dna.get(age)) * mag);
     // Change our position
     posX += x;
     posY += y;
@@ -53,15 +52,22 @@ class Ant {
    * screen
    *****************************************/
   void draw() {
-    sprite.draw(posX,posY,dna[age]);
+    sprite.draw(posX,posY,dna.get(age));
     age++;
+  }
+  
+  /*****************************************
+   * Get the DNA of this ant
+   *****************************************/
+  FloatList getDNA() {
+    return dna;
   }
   
   /*****************************************
    * Return true if the ant died
    *****************************************/
   boolean isDead() {
-    return age >= dna.length;
+    return age >= dna.size();
   }
   
   /*****************************************
