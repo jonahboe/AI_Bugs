@@ -8,8 +8,8 @@ class Ant {
   // Our object for drawing the bugs body
   Animate sprite;
   // Some position stuff
-  int posX;
-  int posY;
+  float posX;
+  float posY;
   // About our ant and its lifespan
   FloatList dna = new FloatList();
   int age;
@@ -24,9 +24,24 @@ class Ant {
     posX = 10;
     posY = 10;
     // Fill our DNA with random directions of travle
-    for(int i = 0; i < 100; i++) {
+    for(int i = 0; i < 200; i++) {
       dna.append(random(TWO_PI));
     }
+    // Set our starting age
+    age = 0;
+  }
+  
+  /*****************************************
+   * Non-default constructor
+   *****************************************/
+  Ant(FloatList d) {
+    // Set up our animation
+    sprite = new Animate("ant_sprite", 4);
+    // Setup our starting location
+    posX = 10;
+    posY = 10;
+    // Fill our DNA with random directions of travle
+    dna = d;
     // Set our starting age
     age = 0;
   }
@@ -37,8 +52,8 @@ class Ant {
   void update() {
     // Set our new direction (Our image doesnt point towards 0
     //   so this is kind of funky)
-    int x = (int)(sin(dna.get(age)) * mag);
-    int y = (int)(-cos(dna.get(age)) * mag);
+    float x = sin(dna.get(age)) * mag;
+    float y = -cos(dna.get(age)) * mag;
     // Change our position
     posX += x;
     posY += y;
@@ -71,9 +86,11 @@ class Ant {
   }
   
   /*****************************************
+  ***********
    * Get how well the ant did
+   **********
    *****************************************/
-  int getFitness() {
+  float getFitness(PVector target) {
     return 0;
   }
   

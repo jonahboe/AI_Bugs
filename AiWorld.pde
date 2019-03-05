@@ -10,6 +10,9 @@ class AiWorld {
   // We need some candy for them to chase after
   Candy candy;
   
+  // Number of generations 
+  int generationsTotal = 1;
+  
   /*****************************************
    * A defoult constructor
    *****************************************/
@@ -24,7 +27,7 @@ class AiWorld {
    *****************************************/
   void update() {
     // Go through all of the ants
-    for(Ant a : ants) {
+    for (Ant a : ants) {
       // And update them if they're not dead
       if (!a.isDead())
         a.update();
@@ -38,14 +41,14 @@ class AiWorld {
    * Draw our world
    *****************************************/
   void draw() {
+    // Draw the candy
+    candy.draw();
     // Go through all of the ants
-    for(Ant a : ants) {
+    for (Ant a : ants) {
       // And draw them if they're not dead
       if (!a.isDead())
         a.draw();
     }
-    // Draw the candy
-    candy.draw();
   }
   
   /*****************************************
@@ -65,14 +68,18 @@ class AiWorld {
   }
   
   /*****************************************
+  **********
    * Create a new generation
+   *********
    *****************************************/
   void reproduce() {
     
   }
   
   /*****************************************
+  **********
    * Create mutations in the new generation
+   *********
    *****************************************/
   void mutate() {
     

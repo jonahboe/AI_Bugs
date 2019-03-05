@@ -25,7 +25,7 @@ void draw() {
   background(50);
   
   // Check for next generation
-  if(world.isDead()) {
+  if (world.isDead()) {
     world.reproduce();
     world.mutate();
   }
