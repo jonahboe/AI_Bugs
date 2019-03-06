@@ -32,7 +32,9 @@ class Ant {
   }
   
   /*****************************************
+  *******************
    * Non-default constructor
+   ******************
    *****************************************/
   Ant(FloatList d) {
     // Set up our animation
@@ -91,7 +93,7 @@ class Ant {
    **********
    *****************************************/
   float getFitness(PVector target) {
-    return 0;
+    return 1 / dist(posX, posY, target.x, target.y);
   }
   
 }

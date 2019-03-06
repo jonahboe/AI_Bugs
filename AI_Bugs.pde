@@ -34,3 +34,8 @@ void draw() {
   world.update();
   world.draw();
 }
+
+
+void keypressed() {
+  if (key == 's');
+}
