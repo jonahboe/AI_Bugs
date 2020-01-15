@@ -10,14 +10,15 @@ class AiWorld {
   // We need some candy for them to chase after
   Candy candy;
   
-  // Number of generations 
-  int generationsTotal = 1;
+  // Info about the ants
+  CycleInfo cycleInfo;
   
   /*****************************************
    * A defoult constructor
    *****************************************/
   AiWorld() {
     ants = new ArrayList<Ant>();
+    cycleInfo = new CycleInfo();
     dead = false;
     candy = new Candy(width/2, height/2);
   }
@@ -49,6 +50,8 @@ class AiWorld {
       if (!a.isDead())
         a.draw();
     }
+    
+    cycleInfo.draw();
   }
   
   /*****************************************
@@ -67,11 +70,9 @@ class AiWorld {
     return dead;
   }
   
-  /*****************************************
-  **********
+  /***************************************************
    * Create a new generation
-   *********
-   *****************************************/
+   **************************************************/
   void reproduce() {
     ArrayList<Ant> genePool = new ArrayList<Ant>();
     ArrayList<Ant> nextGen = new ArrayList<Ant>();
@@ -116,19 +117,14 @@ class AiWorld {
     ants = nextGen;
     dead = false;
     
-    // Tell us some info
-    println("-----------------------------------");
-    print("Generations passed: ");
-    println(generationsTotal++);
-    print("Closest distance: ");
-    println(1/maxFitness);
+    // Update some info
+    cycleInfo.generationsPassed++;
+    cycleInfo.closestDistance = int (1/maxFitness);
   }
   
-  /*****************************************
-  **********
+  /***************************************************
    * Create mutations in the new generation
-   *********
-   *****************************************/
+   **************************************************/
   void mutate() {
     int mutations = 0;
     for (Ant a : ants) {
@@ -139,8 +135,8 @@ class AiWorld {
       }
     }
    
-    print("Mutations in cycle: ");
-    println(mutations);
+    // Update the info
+    cycleInfo.mutationCount = mutations;
   }
   
 }
